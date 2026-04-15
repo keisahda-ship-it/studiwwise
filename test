@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studiwise — Study Smart, Graduate Faster</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1F3C;--navy2:#122648;--gold:#C9A84C;--gold-l:#E8C97A;--cream:#F5F0E8;--cream2:#EDE8DC;--white:#fff;--mid:#3A4A6B;--muted:#7A8BA8;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);overflow-x:hidden}
+.ck{height:18px;background-image:repeating-linear-gradient(90deg,var(--navy) 0 18px,var(--cream) 18px 36px)}
+.ck.g{background-image:repeating-linear-gradient(90deg,var(--gold) 0 18px,var(--navy) 18px 36px)}
+nav{background:var(--navy);position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:68px;box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.nl{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nl-badge{width:40px;height:40px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:13px;color:var(--navy);letter-spacing:.5px}
+.nl-name{font-family:'Bebas Neue';font-size:24px;letter-spacing:2px;color:#fff}
+.nlinks{display:flex;gap:24px;list-style:none;align-items:center}
+.nlinks a{color:rgba(255,255,255,.7);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;transition:color .2s}
+.nlinks a:hover{color:var(--gold)}
+.ncta{background:var(--gold)!important;color:var(--navy)!important;padding:8px 18px;border-radius:4px}
+.ncta:hover{background:var(--gold-l)!important}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.ham span{display:block;width:22px;height:2px;background:var(--gold);border-radius:2px}
+.mob-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--navy);z-index:190;padding:24px 5%;flex-direction:column;gap:0;border-top:1px solid rgba(201,168,76,.2)}
+.mob-menu a{color:rgba(255,255,255,.8);text-decoration:none;font-size:14px;font-weight:600;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07);display:block}
+.mob-menu .mob-wa{background:var(--gold);color:var(--navy)!important;text-align:center;border-radius:4px;padding:13px;margin-top:8px;border:none}
+.mob-menu.open{display:flex}
+.hero{background:var(--navy);padding:72px 5% 88px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.13) 0%,transparent 70%);pointer-events:none}
+.hero-in{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+.h-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.35);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:28px}
+.hero h1{font-family:'Bebas Neue';font-size:clamp(52px,9vw,100px);line-height:.93;color:#fff;letter-spacing:2px;margin-bottom:10px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-sub{font-family:'DM Serif Display';font-style:italic;font-size:18px;color:rgba(255,255,255,.55);margin-bottom:26px}
+.hero-desc{font-size:15px;color:rgba(255,255,255,.68);line-height:1.75;max-width:500px;margin-bottom:38px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.btn-g{background:var(--gold);color:var(--navy);font-weight:700;font-size:14px;padding:14px 30px;border-radius:5px;text-decoration:none;transition:all .22s;display:inline-block}
+.btn-g:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.35)}
+.btn-o{border:1.5px solid rgba(255,255,255,.35);color:#fff;font-weight:500;font-size:14px;padding:14px 30px;border-radius:5px;text-decoration:none;transition:all .22s;display:inline-block}
+.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:0;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap}
+.hs{flex:1;min-width:110px;padding-right:28px;border-right:1px solid rgba(255,255,255,.1);margin-right:28px}
+.hs:last-child{border-right:none;margin-right:0;padding-right:0}
+.hs-n{font-family:'Bebas Neue';font-size:42px;color:var(--gold);letter-spacing:1px;line-height:1}
+.hs-l{font-size:11px;color:rgba(255,255,255,.45);margin-top:3px;letter-spacing:.5px}
+section{padding:76px 5%}
+.si{max-width:1160px;margin:0 auto}
+.sl{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.st{font-family:'Bebas Neue';font-size:clamp(34px,5vw,56px);line-height:1;letter-spacing:1px;color:var(--navy);margin-bottom:14px}
+.ss{font-size:14px;color:var(--mid);max-width:520px;line-height:1.72;margin-bottom:46px}
+.st.w{color:#fff}.ss.w{color:rgba(255,255,255,.6)}
+.bg-dark{background:var(--navy)}
+.bg-cream2{background:var(--cream2)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:12px}
+.ccard{background:#fff;border:1px solid rgba(13,31,60,.08);border-radius:10px;padding:18px;transition:all .22s}
+.ccard:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(13,31,60,.1);border-color:rgba(201,168,76,.3)}
+.cc-icon{font-size:24px;margin-bottom:9px}
+.cc-name{font-weight:600;font-size:13px;color:var(--navy);margin-bottom:4px;line-height:1.3}
+.cc-note{font-size:11px;color:var(--muted);margin-bottom:5px;line-height:1.4}
+.cc-price{font-family:'Bebas Neue';font-size:21px;color:var(--gold);letter-spacing:1px}
+.cc-price small{font-size:13px;letter-spacing:0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.tab-btn{background:transparent;border:1.5px solid rgba(13,31,60,.18);color:var(--mid);font-family:'DM Sans';font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:9px 18px;border-radius:4px;cursor:pointer;transition:all .18s}
+.tab-btn:hover,.tab-btn.active{background:var(--navy);color:var(--gold);border-color:var(--navy)}
+.tabs.w .tab-btn{border-color:rgba(201,168,76,.25);color:rgba(255,255,255,.55)}
+.tabs.w .tab-btn:hover,.tabs.w .tab-btn.active{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.ptable{background:rgba(255,255,255,.96);border:1px solid rgba(13,31,60,.1);border-radius:12px;overflow:hidden}
+.ptable.d{background:rgba(255,255,255,.05);border-color:rgba(201,168,76,.18)}
+.prow{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:1px solid rgba(13,31,60,.06);transition:background .15s;gap:12px}
+.ptable.d .prow{border-color:rgba(255,255,255,.06)}
+.prow:last-child{border-bottom:none}
+.prow:hover{background:rgba(201,168,76,.05)}
+.prow-hd{background:rgba(13,31,60,.06);padding:10px 24px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mid)}
+.ptable.d .prow-hd{background:rgba(201,168,76,.1);color:var(--gold)}
+.prow-name{font-size:13px;color:var(--mid);flex:1;line-height:1.4}
+.ptable.d .prow-name{color:rgba(255,255,255,.8)}
+.prow-note{font-size:11px;color:var(--muted);margin-top:2px}
+.ptable.d .prow-note{color:rgba(255,255,255,.4)}
+.prow-val{font-family:'Bebas Neue';font-size:20px;color:var(--gold);letter-spacing:1px;white-space:nowrap}
+.pkgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.pkcard{border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,.2);display:flex;flex-direction:column}
+.pkcard.feat{border-color:var(--gold);position:relative}
+.pkcard.feat::before{content:'⭐ TERLARIS';position:absolute;top:14px;right:14px;background:var(--gold);color:var(--navy);font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:2px}
+.pkcard.light{background:#fff;border-color:rgba(13,31,60,.1)}
+.pkcard.dark{background:rgba(255,255,255,.04)}
+.pk-hd{padding:22px 24px 18px}
+.pkcard.light .pk-hd{background:var(--navy)}
+.pkcard.dark .pk-hd{background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.07)}
+.pk-name{font-family:'Bebas Neue';font-size:12px;letter-spacing:3px;color:rgba(255,255,255,.55);margin-bottom:2px}
+.pk-title{font-family:'Bebas Neue';font-size:26px;letter-spacing:1.5px;color:#fff;line-height:1;margin-bottom:6px}
+.pk-title.gold{color:var(--gold)}
+.pk-price{font-family:'Bebas Neue';font-size:34px;color:var(--gold);letter-spacing:1px}
+.pk-price small{font-size:16px;letter-spacing:0;opacity:.7}
+.pk-body{padding:18px 24px 24px;flex:1;display:flex;flex-direction:column}
+.pkcard.light .pk-body{background:#fff}
+.pkg-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.pkcard.dark .pkg-label{color:rgba(255,255,255,.35)}
+.pk-features{list-style:none;display:flex;flex-direction:column;gap:7px;flex:1}
+.pk-features li{font-size:13px;color:var(--mid);display:flex;align-items:flex-start;gap:9px;line-height:1.4}
+.pkcard.dark .pk-features li{color:rgba(255,255,255,.72)}
+.pk-features li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.pk-cta{margin-top:20px;display:block;text-align:center;padding:13px;border-radius:6px;font-weight:700;font-size:13px;letter-spacing:.3px;text-decoration:none;transition:all .2s}
+.pk-cta.gold-btn{background:var(--gold);color:var(--navy)}
+.pk-cta.gold-btn:hover{background:var(--gold-l);transform:translateY(-1px)}
+.pk-cta.dark-btn{background:var(--navy);color:#fff}
+.pk-cta.dark-btn:hover{background:var(--navy2)}
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.hbox{background:rgba(255,255,255,.05);border:1.5px solid rgba(201,168,76,.22);border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;transition:background .15s}
+.hbox:hover{background:rgba(201,168,76,.07)}
+.hb-l{font-size:13px;color:#fff;font-weight:600}
+.hb-n{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.hb-p{font-family:'Bebas Neue';font-size:22px;color:var(--gold);letter-spacing:1px;white-space:nowrap}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.wcard{background:#fff;border-radius:10px;padding:24px 20px;border-left:3px solid var(--gold);transition:transform .2s}
+.wcard:hover{transform:translateY(-3px)}
+.w-num{font-family:'Bebas Neue';font-size:48px;color:var(--cream2);line-height:1;margin-bottom:9px}
+.w-title{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px}
+.w-desc{font-size:12.5px;color:var(--mid);line-height:1.6}
+.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ci-items{display:flex;flex-direction:column;gap:16px;margin-top:4px}
+.ci-item{display:flex;align-items:center;gap:14px}
+.ci-icon{width:44px;height:44px;border-radius:9px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.28);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ci-lbl{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.ci-val{font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:color .2s}
+.ci-val:hover{color:var(--gold)}
+.con-card{background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.2);border-radius:16px;padding:36px}
+.con-card-title{font-family:'DM Serif Display';font-size:22px;color:#fff;margin-bottom:6px}
+.con-card-sub{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:28px;line-height:1.65}
+.wa-btn{display:flex;align-items:center;gap:11px;background:#25D366;color:#fff;padding:14px 24px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;transition:all .2s;justify-content:center;margin-bottom:10px}
+.wa-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.ig-btn{display:flex;align-items:center;gap:11px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s;justify-content:center;margin-bottom:9px}
+.ig-btn:hover{transform:translateY(-1px)}
+.x-btn{display:flex;align-items:center;gap:11px;background:#000;color:#fff;padding:11px 24px;border-radius:8px;font-weight:600;font-size:13px;text-decoration:none;transition:all .2s;justify-content:center}
+.x-btn:hover{background:#111;transform:translateY(-1px)}
+footer{background:#07111F;padding:42px 5%;text-align:center}
+.f-brand{font-family:'Bebas Neue';font-size:32px;letter-spacing:5px;color:var(--gold);margin-bottom:5px}
+.f-tag{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px;margin-bottom:20px}
+.f-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:20px}
+.f-links a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--gold)}
+.f-copy{font-size:11px;color:rgba(255,255,255,.18)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.rv.vis{opacity:1;transform:none}
+@media(max-width:900px){.con-grid{grid-template-columns:1fr}.hero-stats .hs{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:16px;margin-right:0;width:50%}.hero-stats .hs:last-child{border-bottom:none}.hero-stats{flex-wrap:wrap;gap:16px}}
+@media(max-width:640px){.nlinks{display:none}.ham{display:flex}.hero h1{font-size:clamp(42px,12vw,66px)}.hs{width:100%!important}}
+</style>
+</head>
+<body>
+
+<div class="ck"></div>
+
+<nav>
+  <a href="#home" class="nl">
+    <div class="nl-badge">SW</div>
+    <span class="nl-name">STUDIWISE</span>
+  </a>
+  <ul class="nlinks">
+    <li><a href="#layanan">Layanan</a></li>
+    <li><a href="#pricelist">Pricelist</a></li>
+    <li><a href="#paket">Paket</a></li>
+    <li><a href="#spesial">Spesial</a></li>
+    <li><a href="#kontak" class="ncta">Chat Sekarang</a></li>
+  </ul>
+  <button class="ham" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="#layanan" onclick="closeMenu()">Layanan</a>
+  <a href="#pricelist" onclick="closeMenu()">Pricelist</a>
+  <a href="#paket" onclick="closeMenu()">Paket</a>
+  <a href="#spesial" onclick="closeMenu()">Spesial</a>
+  <a href="https://wa.me/6285817137326" target="_blank" class="mob-wa">💬 Chat WhatsApp</a>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-in">
+    <div class="h-tag">Academic Support & Research Assistance · Est. 2020</div>
+    <h1>STUDY SMART,<br><em>GRADUATE</em><br>FASTER</h1>
+    <p class="hero-sub">Teman terpercaya dari proposal hingga wisuda</p>
+    <p class="hero-desc">Skripsi, thesis, disertasi, jurnal, makalah, KARIL UT, PPT, hingga paket 1 semester — kami siap bantu dengan harga transparan dan revisi terjamin.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/6285817137326?text=Halo%20Studiwise!%20Saya%20ingin%20konsultasi." target="_blank" class="btn-g">💬 Chat WhatsApp</a>
+      <a href="#pricelist" class="btn-o">Lihat Pricelist Lengkap</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">500+</div><div class="hs-l">Mahasiswa dibantu</div></div>
+      <div class="hs"><div class="hs-n">4+</div><div class="hs-l">Tahun pengalaman</div></div>
+      <div class="hs"><div class="hs-n">98%</div><div class="hs-l">Tingkat kepuasan</div></div>
+      <div class="hs"><div class="hs-n">24/7</div><div class="hs-l">Siap konsultasi</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="ck g"></div>
+
+<!-- LAYANAN SATUAN -->
+<section id="layanan" class="bg-cream2">
+<div class="si">
+  <p class="sl rv">Layanan Satuan</p>
+  <h2 class="st rv">SEMUA LAYANAN & HARGA</h2>
+  <p class="ss rv">Pesan satuan sesuai kebutuhan. Tidak ada biaya tersembunyi.</p>
+  <div class="cgrid">
+    <div class="ccard rv"><div class="cc-icon">📄</div><div class="cc-name">Proposal Penelitian</div><div class="cc-price">150K</div></div>
+    <div class="ccard rv"><div class="cc-icon">❓</div><div class="cc-name">Rumusan Masalah</div><div class="cc-price">70K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📚</div><div class="cc-name">Kerangka / Landasan Teori</div><div class="cc-price">120K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🔬</div><div class="cc-name">Metode Penelitian</div><div class="cc-price">130K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📊</div><div class="cc-name">Analisis SPSS / EViews</div><div class="cc-price">180K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🧐</div><div class="cc-name">Analisis Kualitatif</div><div class="cc-price">170K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📝</div><div class="cc-name">Bikin Kuesioner</div><div class="cc-price">90K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📋</div><div class="cc-name">Google Form + Analisis</div><div class="cc-price">120K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🔄</div><div class="cc-name">Parafrase / Lolos Turnitin</div><div class="cc-price">100K</div></div>
+    <div class="ccard rv"><div class="cc-icon">✏️</div><div class="cc-name">Editing Bahasa</div><div class="cc-price">80K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🎞️</div><div class="cc-name">PPT Ilmiah</div><div class="cc-price">85K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🔧</div><div class="cc-name">Revisi Dosen</div><div class="cc-price">75K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🔗</div><div class="cc-name">Sitasi + Daftar Pustaka</div><div class="cc-price">50K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🌍</div><div class="cc-name">Cari Jurnal Internasional</div><div class="cc-price">60K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📖</div><div class="cc-name">Mendeley-in</div><div class="cc-price">55K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🌐</div><div class="cc-name">Abstrak EN / ID</div><div class="cc-price">45K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🎯</div><div class="cc-name">State of the Art</div><div class="cc-price">110K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🏢</div><div class="cc-name">Laporan Magang / KP</div><div class="cc-price">180K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🖨️</div><div class="cc-name">Proofread + Layout</div><div class="cc-price">70K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📰</div><div class="cc-name">Artikel Ilmiah</div><div class="cc-price">200K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🏷️</div><div class="cc-name">3 Judul + 1 Abstrak</div><div class="cc-note">Pilihan judul siap pakai</div><div class="cc-price">120K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🔍</div><div class="cc-name">Turnitin Check</div><div class="cc-note">Per 1x pengecekan</div><div class="cc-price">5K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🤖</div><div class="cc-name">AI Check Quillbot</div><div class="cc-note">Per 1x pengecekan</div><div class="cc-price">4K</div></div>
+    <div class="ccard rv"><div class="cc-icon">🗂️</div><div class="cc-name">Makalah</div><div class="cc-note">Inc. AI Check + Turnitin</div><div class="cc-price"><small>15K/hal</small></div></div>
+    <div class="ccard rv"><div class="cc-icon">🎤</div><div class="cc-name">PPT + Script Presentasi</div><div class="cc-note">Slide + naskah lengkap</div><div class="cc-price">150K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📢</div><div class="cc-name">PPT + Script Sempro</div><div class="cc-note">Siap seminar proposal</div><div class="cc-price">100K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📑</div><div class="cc-name">Pembuatan Jurnal</div><div class="cc-note">Penulisan (di luar biaya publish)</div><div class="cc-price"><small>Mulai 500K</small></div></div>
+    <div class="ccard rv"><div class="cc-icon">📜</div><div class="cc-name">KARIL UT</div><div class="cc-note">Karya ilmiah sampai ACC</div><div class="cc-price">750K</div></div>
+    <div class="ccard rv"><div class="cc-icon">📓</div><div class="cc-name">Tugas UT</div><div class="cc-note">TMK, diskusi, tugas online</div><div class="cc-price">30K<small>/tugas</small></div></div>
+    <div class="ccard rv"><div class="cc-icon">📅</div><div class="cc-name">1 Semester UT</div><div class="cc-note">Semua tugas 1 semester</div><div class="cc-price">3.000K</div></div>
+  </div>
+</div>
+</section>
+
+<div class="ck"></div>
+
+<!-- PRICELIST -->
+<section id="pricelist" class="bg-dark">
+<div class="si">
+  <p class="sl rv">Rincian Lengkap</p>
+  <h2 class="st w rv">PRICELIST DETAIL</h2>
+  <p class="ss w rv">Pilih kategori untuk melihat rincian harga. Konsultasi awal selalu gratis.</p>
+  <div class="tabs w rv" id="mainTabs">
+    <button class="tab-btn active" onclick="switchTab('skripsi',this,'mainTabs')">Skripsi</button>
+    <button class="tab-btn" onclick="switchTab('thesis',this,'mainTabs')">Thesis</button>
+    <button class="tab-btn" onclick="switchTab('disertasi',this,'mainTabs')">Disertasi</button>
+    <button class="tab-btn" onclick="switchTab('jurnal',this,'mainTabs')">Jurnal</button>
+    <button class="tab-btn" onclick="switchTab('semrpo',this,'mainTabs')">Semrpo/Semhas</button>
+    <button class="tab-btn" onclick="switchTab('ut',this,'mainTabs')">Mahasiswa UT</button>
+    <button class="tab-btn" onclick="switchTab('cek',this,'mainTabs')">Cek Plagiarisme</button>
+    <button class="tab-btn" onclick="switchTab('ppt',this,'mainTabs')">PPT & Makalah</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-skripsi">
+    <div class="ptable d">
+      <div class="prow-hd">📘 Skripsi — Per BAB</div>
+      <div class="prow"><div><div class="prow-name">BAB I — Pendahuluan</div><div class="prow-note">Latar belakang, rumusan masalah, tujuan penelitian</div></div><span class="prow-val">400K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB II — Tinjauan Pustaka</div><div class="prow-note">Landasan teori, penelitian terdahulu, kerangka pemikiran</div></div><span class="prow-val">400K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB III — Metode Penelitian</div><div class="prow-note">Desain, populasi, sampel, teknik analisis data</div></div><span class="prow-val">400K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB IV — Hasil & Pembahasan</div><div class="prow-note">Olah data, interpretasi hasil, diskusi temuan</div></div><span class="prow-val">1.000K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB V — Penutup & Simpulan</div><div class="prow-note">Kesimpulan, saran, implikasi penelitian</div></div><span class="prow-val">200K</span></div>
+      <div class="prow-hd">📦 Paket All In Skripsi</div>
+      <div class="prow"><div><div class="prow-name">PALL SKRIPSI — Semua BAB + Bonus</div><div class="prow-note">Inc. Turnitin, AI Check, GMeet 3x, jurnal Sinta/Scopus, olahdata, tabulasi, data manipulasi</div></div><span class="prow-val">2.800K</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-thesis">
+    <div class="ptable d">
+      <div class="prow-hd">📗 Thesis — Per BAB</div>
+      <div class="prow"><div><div class="prow-name">BAB I — Pendahuluan</div></div><span class="prow-val">600K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB II — Tinjauan Pustaka</div></div><span class="prow-val">600K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB III — Metode Penelitian</div></div><span class="prow-val">600K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB IV — Hasil & Pembahasan</div></div><span class="prow-val">2.000K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB V — Penutup & Simpulan</div></div><span class="prow-val">300K</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-disertasi">
+    <div class="ptable d">
+      <div class="prow-hd">📙 Disertasi — Per BAB</div>
+      <div class="prow"><div><div class="prow-name">BAB I — Pendahuluan</div></div><span class="prow-val">800K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB II — Tinjauan Pustaka</div></div><span class="prow-val">800K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB III — Metode Penelitian</div></div><span class="prow-val">800K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB IV — Hasil & Pembahasan</div></div><span class="prow-val">4.000K</span></div>
+      <div class="prow"><div><div class="prow-name">BAB V — Penutup & Simpulan</div></div><span class="prow-val">500K</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-jurnal">
+    <div class="ptable d">
+      <div class="prow-hd">📰 Publish Jurnal — Biaya Submit</div>
+      <div class="prow"><div><div class="prow-name">SINTA 1</div><div class="prow-note">Jurnal nasional terakreditasi tertinggi</div></div><span class="prow-val">4.000K</span></div>
+      <div class="prow"><div><div class="prow-name">SINTA 2</div></div><span class="prow-val">2.000K</span></div>
+      <div class="prow"><div><div class="prow-name">SINTA 3</div></div><span class="prow-val">1.500K</span></div>
+      <div class="prow"><div><div class="prow-name">SINTA 4</div></div><span class="prow-val">1.300K</span></div>
+      <div class="prow"><div><div class="prow-name">SINTA 5</div></div><span class="prow-val">900K</span></div>
+      <div class="prow-hd">✍️ Pembuatan / Penulisan Artikel</div>
+      <div class="prow"><div><div class="prow-name">Penulisan Artikel Ilmiah</div><div class="prow-note">Biaya penulisan saja — di luar biaya publish ke jurnal</div></div><span class="prow-val">Mulai 500K</span></div>
+      <div class="prow"><div><div class="prow-name">KARIL — Karya Ilmiah UT</div><div class="prow-note">Dikerjakan sampai ACC dosen / penguji</div></div><span class="prow-val">750K</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-semrpo">
+    <div class="ptable d">
+      <div class="prow-hd">🎓 Semrpo, Semhas & Lulus</div>
+      <div class="prow"><div><div class="prow-name">SEMRPO (Seminar Proposal)</div><div class="prow-note">Dokumen + PPT + persiapan seminar proposal</div></div><span class="prow-val">1.000K</span></div>
+      <div class="prow"><div><div class="prow-name">SEMHAS (Seminar Hasil)</div><div class="prow-note">Dokumen hasil + PPT + revisi pasca semhas</div></div><span class="prow-val">1.100K</span></div>
+      <div class="prow"><div><div class="prow-name">LULUS — Sempro + Semhas</div><div class="prow-note">Paket lengkap dari sempro hingga sidang akhir</div></div><span class="prow-val">2.200K</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-ut">
+    <div class="ptable d">
+      <div class="prow-hd">🏫 Khusus Mahasiswa Universitas Terbuka (UT)</div>
+      <div class="prow"><div><div class="prow-name">Per Tugas UT</div><div class="prow-note">TMK, diskusi forum, tugas tutorial online</div></div><span class="prow-val">30K</span></div>
+      <div class="prow"><div><div class="prow-name">Paket 1 Semester UT</div><div class="prow-note">Semua tugas 1 semester ditangani — lebih hemat vs per tugas</div></div><span class="prow-val">3.000K</span></div>
+      <div class="prow"><div><div class="prow-name">KARIL — Karya Ilmiah UT</div><div class="prow-note">Dikerjakan sampai ACC, revisi tidak terbatas</div></div><span class="prow-val">750K</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-cek">
+    <div class="ptable d">
+      <div class="prow-hd">🔍 Pengecekan Plagiarisme & AI</div>
+      <div class="prow"><div><div class="prow-name">Turnitin Check</div><div class="prow-note">1x pengecekan dokumen, langsung kirim screenshot hasil</div></div><span class="prow-val">5K</span></div>
+      <div class="prow"><div><div class="prow-name">AI Check Quillbot</div><div class="prow-note">1x pengecekan deteksi konten AI</div></div><span class="prow-val">4K</span></div>
+      <div class="prow"><div><div class="prow-name">Parafrase + Lolos Turnitin</div><div class="prow-note">Revisi sampai persentase aman sesuai standar kampus</div></div><span class="prow-val">100K</span></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-ppt">
+    <div class="ptable d">
+      <div class="prow-hd">🎤 PPT & Presentasi</div>
+      <div class="prow"><div><div class="prow-name">PPT Ilmiah</div><div class="prow-note">Slide presentasi ilmiah desain profesional</div></div><span class="prow-val">85K</span></div>
+      <div class="prow"><div><div class="prow-name">PPT + Script Sempro</div><div class="prow-note">Slide + naskah presentasi seminar proposal</div></div><span class="prow-val">100K</span></div>
+      <div class="prow"><div><div class="prow-name">PPT + Script Full</div><div class="prow-note">Slide + naskah lengkap untuk semhas / sidang akhir</div></div><span class="prow-val">150K</span></div>
+      <div class="prow-hd">📄 Makalah & Judul</div>
+      <div class="prow"><div><div class="prow-name">Makalah (per halaman)</div><div class="prow-note">Sudah termasuk AI Check + Turnitin</div></div><span class="prow-val">15K/hal</span></div>
+      <div class="prow"><div><div class="prow-name">3 Judul + 1 Abstrak</div><div class="prow-note">3 pilihan judul penelitian + 1 abstrak siap pakai</div></div><span class="prow-val">120K</span></div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<div class="ck g"></div>
+
+<!-- PAKET -->
+<section id="paket">
+<div class="si">
+  <p class="sl rv">Hemat Lebih Banyak</p>
+  <h2 class="st rv">PAKET BUNDLING</h2>
+  <p class="ss rv">Sudah termasuk berbagai layanan tambahan — lebih hemat dibanding beli satuan.</p>
+  <div class="tabs rv" id="pkgTabs">
+    <button class="tab-btn active" onclick="switchTab('pk-pahe',this,'pkgTabs')">Paket Hemat</button>
+    <button class="tab-btn" onclick="switchTab('pk-pall',this,'pkgTabs')">Paket All In</button>
+    <button class="tab-btn" onclick="switchTab('pk-ut',this,'pkgTabs')">Paket UT</button>
+    <button class="tab-btn" onclick="switchTab('pk-ppt',this,'pkgTabs')">Paket PPT</button>
+    <button class="tab-btn" onclick="switchTab('pk-makalah',this,'pkgTabs')">Makalah & Judul</button>
+    <button class="tab-btn" onclick="switchTab('pk-jurnal',this,'pkgTabs')">Paket Jurnal</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-pk-pahe">
+    <div class="pkgrid">
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Paket Hemat</div><div class="pk-title">SEMPRO HEMAT</div><div class="pk-price">900K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include</div>
+          <ul class="pk-features"><li>Turnitin</li><li>GMeet 1x</li><li>Revisi 3x</li><li>Parafrase</li><li>Jurnal SINTA/Scopus</li><li>Olahdata SPSS/SmartPLS BAB 4</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20Paket%20Sempro%20Hemat%20900K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Paket Hemat</div><div class="pk-title">SEMHAS HEMAT</div><div class="pk-price">1.200K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include</div>
+          <ul class="pk-features"><li>Turnitin</li><li>GMeet 1x</li><li>Revisi 3x</li><li>Parafrase</li><li>Jurnal SINTA/Scopus</li><li>Olahdata SPSS/SmartPLS BAB 4</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20Paket%20Semhas%20Hemat%201.200K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Paket Hemat</div><div class="pk-title">SKRIPSI HEMAT</div><div class="pk-price">2.000K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include</div>
+          <ul class="pk-features"><li>Turnitin</li><li>GMeet 1x</li><li>Revisi 3x</li><li>Parafrase</li><li>Jurnal SINTA/Scopus</li><li>Olahdata SPSS/SmartPLS BAB 4</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20Paket%20Skripsi%20Hemat%202.000K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-pk-pall">
+    <div class="pkgrid">
+      <div class="pkcard dark rv">
+        <div class="pk-hd"><div class="pk-name">All In</div><div class="pk-title">PALL SEMPRO</div><div class="pk-price">1.300K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include</div>
+          <ul class="pk-features"><li>Turnitin + AI Check</li><li>GMeet 3x</li><li>Bimbingan hingga software dikuasai</li><li>Revisi 3x</li><li>Parafrase</li><li>Jurnal SINTA/Scopus (GDrive)</li><li>Olahdata SPSS/SmartPLS</li><li>Data Manipulasi + Tabulasi</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20PALL%20Sempro" target="_blank" class="pk-cta gold-btn">Order Sekarang</a>
+        </div>
+      </div>
+      <div class="pkcard feat dark rv">
+        <div class="pk-hd"><div class="pk-name">All In — Terlaris</div><div class="pk-title gold">PALL SEMHAS</div><div class="pk-price">1.800K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include Semua</div>
+          <ul class="pk-features"><li>Turnitin + AI Check</li><li>GMeet 3x</li><li>Bimbingan hingga software dikuasai</li><li>Revisi 3x</li><li>Parafrase</li><li>Jurnal SINTA/Scopus (GDrive)</li><li>Olahdata SPSS/SmartPLS</li><li>Data Manipulasi + Tabulasi</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20PALL%20Semhas" target="_blank" class="pk-cta gold-btn">Order Sekarang</a>
+        </div>
+      </div>
+      <div class="pkcard dark rv">
+        <div class="pk-hd"><div class="pk-name">All In Premium</div><div class="pk-title">PALL SKRIPSI</div><div class="pk-price">2.800K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include + Bonus Ekstra</div>
+          <ul class="pk-features"><li>Turnitin + AI Check</li><li>GMeet 3x</li><li>Bimbingan hingga software dikuasai</li><li>Revisi 3x</li><li>Parafrase</li><li>Jurnal SINTA/Scopus (GDrive)</li><li>Olahdata SPSS/SmartPLS</li><li>Data Manipulasi + Tabulasi</li><li>Konsultasi tidak terbatas via WA</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20PALL%20Skripsi" target="_blank" class="pk-cta gold-btn">Order Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-pk-ut">
+    <div class="pkgrid">
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Mahasiswa UT</div><div class="pk-title">PER TUGAS</div><div class="pk-price">30K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Cocok untuk</div>
+          <ul class="pk-features"><li>Tugas Wajib (TMK)</li><li>Diskusi forum UT</li><li>Tugas tutorial online</li><li>Tugas akhir semester</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Saya%20mahasiswa%20UT%20mau%20order%20per%20tugas%2030K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+      <div class="pkcard feat light rv">
+        <div class="pk-hd"><div class="pk-name">Mahasiswa UT</div><div class="pk-title">1 SEMESTER</div><div class="pk-price">3.000K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include Semua</div>
+          <ul class="pk-features"><li>Semua tugas 1 semester ditangani</li><li>TMK, diskusi, tugas online</li><li>Konsultasi sepanjang semester</li><li>Revisi sesuai kebutuhan</li><li>Hemat vs beli per tugas satuan</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20Paket%201%20Semester%20UT%203jt" target="_blank" class="pk-cta dark-btn">Order Paket Ini</a>
+        </div>
+      </div>
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Mahasiswa UT</div><div class="pk-title">KARIL UT</div><div class="pk-price">750K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Karya Ilmiah — Sampai ACC</div>
+          <ul class="pk-features"><li>Sesuai format penulisan UT</li><li>Revisi tidak terbatas hingga lulus</li><li>Pendampingan via WA</li><li>Garansi dikerjakan sampai ACC dosen</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20KARIL%20UT%20750K" target="_blank" class="pk-cta dark-btn">Konsultasi Dulu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-pk-ppt">
+    <div class="pkgrid">
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Presentasi</div><div class="pk-title">PPT ILMIAH</div><div class="pk-price">85K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include</div>
+          <ul class="pk-features"><li>Slide presentasi ilmiah profesional</li><li>Desain menarik & akademik</li><li>Revisi 1x</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20PPT%20Ilmiah%2085K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Presentasi</div><div class="pk-title">PPT + SCRIPT SEMPRO</div><div class="pk-price">100K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include</div>
+          <ul class="pk-features"><li>Slide PPT seminar proposal</li><li>Naskah/script siap dibacakan</li><li>Format sesuai kebutuhan kampus</li><li>Revisi 1x</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20PPT%20%2B%20Script%20Sempro%20100K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+      <div class="pkcard feat light rv">
+        <div class="pk-hd"><div class="pk-name">Presentasi Full</div><div class="pk-title">PPT + SCRIPT FULL</div><div class="pk-price">150K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include Semua</div>
+          <ul class="pk-features"><li>Slide PPT lengkap & profesional</li><li>Script/naskah presentasi penuh</li><li>Cocok untuk semhas & sidang akhir</li><li>Tips antisipasi pertanyaan penguji</li><li>Revisi 2x</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20Paket%20PPT%20%2B%20Script%20Full%20150K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-pk-makalah">
+    <div class="pkgrid">
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Makalah</div><div class="pk-title">PER HALAMAN</div><div class="pk-price"><small>15K</small>/hal</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Sudah termasuk</div>
+          <ul class="pk-features"><li>AI Check (deteksi konten AI)</li><li>Turnitin Check</li><li>Penulisan sesuai format diminta</li><li>Referensi jurnal terpercaya</li><li>Konsultasi via WA</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20order%20makalah%2015K%20per%20halaman" target="_blank" class="pk-cta dark-btn">Konsultasi Halaman</a>
+        </div>
+      </div>
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Paket Judul</div><div class="pk-title">3 JUDUL + ABSTRAK</div><div class="pk-price">120K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Include</div>
+          <ul class="pk-features"><li>3 pilihan judul penelitian</li><li>1 abstrak siap pakai</li><li>Disesuaikan bidang studi kamu</li><li>Referensi jurnal terkini 2020–2024</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20Paket%203%20Judul%20%2B%20Abstrak%20120K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-pk-jurnal">
+    <div class="pkgrid">
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Penulisan Jurnal</div><div class="pk-title">ARTIKEL ILMIAH</div><div class="pk-price"><small>Mulai</small> 500K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Penulisan (di luar biaya publish)</div>
+          <ul class="pk-features"><li>Penulisan artikel dari nol</li><li>Format sesuai target jurnal</li><li>Referensi valid & up-to-date</li><li>Abstrak EN + ID</li><li>Revisi sesuai kebutuhan</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20tanya%20pembuatan%20jurnal%20mulai%20500K" target="_blank" class="pk-cta dark-btn">Konsultasi Dulu</a>
+        </div>
+      </div>
+      <div class="pkcard feat light rv">
+        <div class="pk-hd"><div class="pk-name">Tulis + Publish</div><div class="pk-title">JURNAL SINTA</div><div class="pk-price"><small>Mulai</small> 1.400K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Penulisan + Submit ke SINTA 5</div>
+          <ul class="pk-features"><li>Penulisan artikel ilmiah (500K)</li><li>+ Biaya publish SINTA 5 (900K)</li><li>Dijamin terbit & dapat DOI</li><li>Cocok syarat kelulusan S1/S2</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20paket%20tulis%20%2B%20publish%20jurnal" target="_blank" class="pk-cta dark-btn">Tanya Detail</a>
+        </div>
+      </div>
+      <div class="pkcard light rv">
+        <div class="pk-hd"><div class="pk-name">Karya Ilmiah UT</div><div class="pk-title">KARIL</div><div class="pk-price">750K</div></div>
+        <div class="pk-body">
+          <div class="pkg-label">Sampai ACC Penguji</div>
+          <ul class="pk-features"><li>Penulisan KARIL format UT</li><li>Revisi tidak terbatas hingga ACC</li><li>Pendampingan via WA</li></ul>
+          <a href="https://wa.me/6285817137326?text=Halo!%20Mau%20KARIL%20UT%20sampai%20ACC%20750K" target="_blank" class="pk-cta dark-btn">Order Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<div class="ck"></div>
+
+<!-- SPESIAL -->
+<section id="spesial" class="bg-dark">
+<div class="si">
+  <p class="sl rv">Penawaran Terbaik</p>
+  <h2 class="st w rv">LAYANAN SPESIAL</h2>
+  <p class="ss w rv">Layanan paling sering dicari — harga terjangkau, kualitas terjamin.</p>
+  <div class="hgrid rv">
+    <div class="hbox"><div><div class="hb-l">Turnitin 1x Check</div><div class="hb-n">Screenshot hasil langsung dikirim</div></div><div class="hb-p">5K</div></div>
+    <div class="hbox"><div><div class="hb-l">AI Check Quillbot 1x</div><div class="hb-n">Deteksi AI per dokumen</div></div><div class="hb-p">4K</div></div>
+    <div class="hbox"><div><div class="hb-l">Makalah per halaman</div><div class="hb-n">Inc. AI Check + Turnitin</div></div><div class="hb-p">15K/hal</div></div>
+    <div class="hbox"><div><div class="hb-l">3 Judul + 1 Abstrak</div><div class="hb-n">Langsung siap pakai</div></div><div class="hb-p">120K</div></div>
+    <div class="hbox"><div><div class="hb-l">PPT + Script Sempro</div><div class="hb-n">Slide + naskah presentasi</div></div><div class="hb-p">100K</div></div>
+    <div class="hbox"><div><div class="hb-l">PPT + Script Full</div><div class="hb-n">Semhas / sidang akhir</div></div><div class="hb-p">150K</div></div>
+    <div class="hbox"><div><div class="hb-l">Tugas UT per tugas</div><div class="hb-n">TMK, diskusi, tutorial</div></div><div class="hb-p">30K</div></div>
+    <div class="hbox"><div><div class="hb-l">Paket 1 Semester UT</div><div class="hb-n">Semua tugas beres</div></div><div class="hb-p">3.000K</div></div>
+    <div class="hbox"><div><div class="hb-l">KARIL UT Sampai ACC</div><div class="hb-n">Garansi tidak terbatas</div></div><div class="hb-p">750K</div></div>
+    <div class="hbox"><div><div class="hb-l">Pembuatan Artikel Jurnal</div><div class="hb-n">Di luar biaya publish</div></div><div class="hb-p">Mulai 500K</div></div>
+    <div class="hbox"><div><div class="hb-l">Paket Lulus Sempro+Semhas</div><div class="hb-n">Pendampingan hingga sidang</div></div><div class="hb-p">2.200K</div></div>
+    <div class="hbox"><div><div class="hb-l">Paket All In Skripsi</div><div class="hb-n">Termasuk semua layanan bonus</div></div><div class="hb-p">2.800K</div></div>
+  </div>
+</div>
+</section>
+
+<div class="ck g"></div>
+
+<!-- WHY -->
+<section>
+<div class="si">
+  <p class="sl rv">Mengapa Memilih Kami</p>
+  <h2 class="st rv">KENAPA STUDIWISE?</h2>
+  <p class="ss rv">Bukan sekadar jasa tulis. Kami adalah partner akademik yang memahami tekanan dunia kampus.</p>
+  <div class="wgrid">
+    <div class="wcard rv"><div class="w-num">01</div><div class="w-title">Berpengalaman Sejak 2020</div><div class="w-desc">4+ tahun melayani mahasiswa dari berbagai universitas Indonesia, termasuk UT, PTN, dan PTS.</div></div>
+    <div class="wcard rv"><div class="w-num">02</div><div class="w-title">Harga Transparan</div><div class="w-desc">Tidak ada biaya tersembunyi. Semua harga tertera jelas dan bisa didiskusikan sesuai budget.</div></div>
+    <div class="wcard rv"><div class="w-num">03</div><div class="w-title">Tim Ahli Bidangnya</div><div class="w-desc">Dikerjakan oleh orang yang paham metodologi dan bidang studi kamu — bukan sekadar nulis.</div></div>
+    <div class="wcard rv"><div class="w-num">04</div><div class="w-title">Revisi Terjamin</div><div class="w-desc">Setiap paket termasuk revisi. Kami tidak akan meninggalkan sebelum pekerjaan benar-benar tuntas.</div></div>
+    <div class="wcard rv"><div class="w-num">05</div><div class="w-title">Respons Cepat 24/7</div><div class="w-desc">Chat WA langsung direspons. Konsultasi awal gratis tanpa perlu bayar terlebih dahulu.</div></div>
+    <div class="wcard rv"><div class="w-num">06</div><div class="w-title">Garansi Lolos Turnitin</div><div class="w-desc">Paket yang include Turnitin dijamin aman dari plagiarisme sebelum diserahkan ke kamu.</div></div>
+  </div>
+</div>
+</section>
+
+<div class="ck"></div>
+
+<!-- KONTAK -->
+<section id="kontak" class="bg-dark">
+<div class="si">
+  <div class="con-grid">
+    <div>
+      <p class="sl rv">Hubungi Kami</p>
+      <h2 class="st w rv">SIAP MEMBANTU<br>KAPAN SAJA</h2>
+      <p class="ss w rv">Konsultasi awal gratis! Ceritakan kebutuhanmu dan kami bantu carikan solusi terbaik.</p>
+      <div class="ci-items">
+        <div class="ci-item rv"><div class="ci-icon">📱</div><div><div class="ci-lbl">WhatsApp</div><a href="https://wa.me/6285817137326" target="_blank" class="ci-val">0858-1713-7326</a></div></div>
+        <div class="ci-item rv"><div class="ci-icon">📸</div><div><div class="ci-lbl">Instagram</div><a href="https://instagram.com/studiwise_" target="_blank" class="ci-val">@studiwise_</a></div></div>
+        <div class="ci-item rv"><div class="ci-icon">🐦</div><div><div class="ci-lbl">X / Twitter</div><a href="https://x.com/hallostudiwise_" target="_blank" class="ci-val">@hallostudiwise_</a></div></div>
+        <div class="ci-item rv"><div class="ci-icon">✉️</div><div><div class="ci-lbl">Email</div><a href="mailto:studywise1711@gmail.com" class="ci-val">studywise1711@gmail.com</a></div></div>
+        <div class="ci-item rv"><div class="ci-icon">🔗</div><div><div class="ci-lbl">Semua Link</div><a href="https://linktr.ee/studiwise" target="_blank" class="ci-val">linktr.ee/studiwise</a></div></div>
+      </div>
+    </div>
+    <div class="con-card rv">
+      <div class="con-card-title">Mulai Konsultasi Gratis</div>
+      <p class="con-card-sub">Tidak perlu ragu — langsung hubungi via WA atau follow IG untuk update promo terbaru.</p>
+      <a href="https://wa.me/6285817137326?text=Halo%20Studiwise!%20Saya%20mau%20konsultasi%20mengenai%20layanan%20akademik." target="_blank" class="wa-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat via WhatsApp
+      </a>
+      <a href="https://instagram.com/studiwise_" target="_blank" class="ig-btn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Follow @studiwise_
+      </a>
+      <a href="https://x.com/hallostudiwise_" target="_blank" class="x-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Follow @hallostudiwise_
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="ck g"></div>
+
+<footer>
+  <div class="f-brand">STUDIWISE</div>
+  <p class="f-tag">STUDY SMART · GRADUATE FASTER · EST. 2020</p>
+  <div class="f-links">
+    <a href="#layanan">Layanan</a><a href="#pricelist">Pricelist</a><a href="#paket">Paket</a>
+    <a href="#spesial">Spesial</a><a href="https://wa.me/6285817137326" target="_blank">WhatsApp</a>
+    <a href="https://instagram.com/studiwise_" target="_blank">Instagram</a>
+    <a href="https://x.com/hallostudiwise_" target="_blank">X / Twitter</a>
+    <a href="https://linktr.ee/studiwise" target="_blank">Linktree</a>
+  </div>
+  <p class="f-copy">© 2024 Studiwise. Academic Support & Research Assistance. All rights reserved.</p>
+</footer>
+
+<script>
+function switchTab(id, btn, groupId) {
+  const grp = document.getElementById(groupId);
+  grp.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const sec = grp.closest('section') || document.body;
+  sec.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('tab-' + id);
+  if (el) el.classList.add('active');
+}
+function toggleMenu() { document.getElementById('mobMenu').classList.toggle('open'); }
+function closeMenu() { document.getElementById('mobMenu').classList.remove('open'); }
+document.addEventListener('click', e => {
+  const m = document.getElementById('mobMenu');
+  if (!document.querySelector('nav').contains(e.target) && m.classList.contains('open')) m.classList.remove('open');
+});
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('vis'), i * 50); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
